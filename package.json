@@ -2,6 +2,7 @@
     "name": "media-url-parser",
     "version": "0.0.4",
     "main": "index.js",
+    "module": "main.js",
     "license": "MIT",
     "scripts": {
         "start": "node index.js",
