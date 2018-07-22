@@ -1,9 +1,9 @@
 import test from 'ava'
 import { mediaUrlParser } from './index.js'
-const {
+import {
     youtubeDict,
     fileDict
-} = require('./tests/provider-dictionaries')
+} from './tests/provider-dictionaries'
 
 test('Youtube URL correctly parse the provider', t => {
     t.plan(youtubeDict.length)
