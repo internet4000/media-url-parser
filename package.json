@@ -1,11 +1,11 @@
 {
     "name": "mediaUrlParser",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "index.js",
     "license": "MIT",
     "scripts": {
         "start": "node index.js",
-	"test": "ava"
+        "test": "ava"
     },
     "dependencies": {
         "youtube-regex": "^1.0.5"
