@@ -15,11 +15,22 @@ const fileUrlToId = (url) => {
 	return s[s.length - 1]
 }
 
+const discogsUrlToId = (url) => {
+    // https://regexr.com/3i5fa
+    let discogsReleaseRegex = /([0-9]+(?:$|(?=\?)|(?=\/$)))/gm
+    let result = discogsReleaseRegex.exec(url)
+    if (!result) {
+	return undefined
+    }
+    return result[0]
+}
+
 const findId = (url, provider) => {
-	let methods = {
+  let methods = {
 		youtube: (url) => youtubeUrlToId(url),
-		file: (url) => fileUrlToId(url)
-	}
+		file: (url) => fileUrlToId(url),
+		discogs: (url) => discogsUrlToId(url)
+  }
 
 	let extractId = methods[provider]
 	if (typeof extractId !== 'function') {

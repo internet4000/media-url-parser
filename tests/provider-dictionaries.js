@@ -55,3 +55,51 @@ exports.fileDict = [
 	'Birds_Polyphonic.ogg'
     ]
 ]
+
+
+exports.discogsDict = [
+    [
+	'https://7778787987987.discogs.com/1123123/release/082112312312331',
+	'082112312312331'
+    ],
+    [
+	'https://7778787987987.discogs.com/1123123/release/082112312312331/',
+	'082112312312331'
+    ],
+    [
+	'https://www.discogs.com/Various-Absolute-99333331999/release/1607906',
+	'1607906'
+    ],
+    [
+	'https://www.discogs.com/Various-Absolute-99-The-Best-Of-1999/release/1607906',
+	'1607906'
+    ],
+    [
+	'https://www.discogs.com/Nu-Guinea-The-Tony-Allen-Experiments/release/7983975',
+	'7983975'
+    ],
+    [
+	'https://www.discogs.com/Nu-Guinea-The-Tony-Allen-Experiments/master/945635',
+	'945635'
+    ],
+    [
+	'https://www.discogs.com/Nu-Guinea-The-Tony-Allen-Experiments/release/7997305',
+	'7997305'
+    ],
+    [
+	'https://www.discogs.com/sell/release/7983975?ev=rb',
+	'7983975'
+    ],
+    [
+	'https://www.discogs.com/sell/release/7983975?offers=1&condition=Mint+%28M%29',
+	'7983975'
+    ],
+    [
+	'https://www.discogs.com/sell/release/7983975?currency=USD&condition=Mint+%2833M%29',
+	'7983975'
+    ],
+    [
+	'https://www.discogs.com/sell/release/7983975?currency=USD&condition=Mint+%28M%2932323232323',
+	'7983975'
+    ]
+]
