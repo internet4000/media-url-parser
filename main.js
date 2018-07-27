@@ -1,4 +1,3 @@
-import http from 'http'
 import URL from 'url'
 import youtubeRegex from 'youtube-regex'
 import providersList from './src/providers'
