@@ -39,7 +39,7 @@ exports.youtubeDict = [
 
 exports.fileDict = [
     [
-	'192.168.0.1/a/longer/path/podcast.ogg',
+	'http://192.168.0.1/a/longer/path/podcast.ogg',
 	'podcast.ogg'
     ],
     [
