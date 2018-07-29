@@ -1,4 +1,3 @@
-import URL from 'url'
 import youtubeRegex from 'youtube-regex'
 import providersList from './src/providers'
 
@@ -11,7 +10,7 @@ const youtubeUrlToId = (url) => {
 }
 
 const fileUrlToId = (url) => {
-	let result = URL.parse(url)
+	let result = new URL(url)
 	let s = result.pathname.split('/')
 	return s[s.length - 1]
 }
@@ -31,10 +30,10 @@ const findId = (url, provider) => {
 }
 
 const findProvider = (url) => {
-	let result = URL.parse(url)
+	let result = new URL(url)
 	let hostId = extractHostId(result.host)
-
-	// from the hostId, find the provider id
+	
+	// from the hostId, find the provider id 
 	return providersList[hostId] || 'file'
 }
 
@@ -53,14 +52,14 @@ const extractHostId = (host) => {
 
 // enforces the presence of a `host` in the url
 const normalizeUrl = (url) => {
-	let result = URL.parse(url)
-	// case there is no `http://` in the url
-	if (!result.hostname) {
-		// default to https
-		return `https://${url}`
-	} else {
-		return url
-	}
+		let result = new URL(url)
+		// case there is no `http://` in the url
+		if (!result.hostname) {
+			// default to https
+			return `https://${url}`
+		} else {
+			return url
+		}
 }
 
 const mediaUrlParser = (url) => {

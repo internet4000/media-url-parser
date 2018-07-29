@@ -40,3 +40,9 @@ test('File URL correctly parse the id correctly', t => {
 	t.is(r.id, item[1]);
     })
 });
+
+test('It throws on invalid URL', t => {
+	const error = t.throws(() => {
+		mediaUrlParser('notanurl')
+	})
+});
