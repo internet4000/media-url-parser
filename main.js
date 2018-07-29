@@ -32,8 +32,8 @@ const findId = (url, provider) => {
 const findProvider = (url) => {
 	let result = new URL(url)
 	let hostId = extractHostId(result.host)
-	
-	// from the hostId, find the provider id 
+
+	// from the hostId, find the provider id
 	return providersList[hostId] || 'file'
 }
 
@@ -52,14 +52,14 @@ const extractHostId = (host) => {
 
 // enforces the presence of a `host` in the url
 const normalizeUrl = (url) => {
-		let result = new URL(url)
-		// case there is no `http://` in the url
-		if (!result.hostname) {
-			// default to https
-			return `https://${url}`
-		} else {
-			return url
-		}
+	let result = new URL(url)
+	// case there is no `http://` in the url
+	if (!result.hostname) {
+		// default to https
+		return `https://${url}`
+	} else {
+		return url
+	}
 }
 
 const mediaUrlParser = (url) => {
