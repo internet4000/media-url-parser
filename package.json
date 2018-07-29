@@ -1,6 +1,6 @@
 {
   "name": "media-url-parser",
-  "version": "0.0.7",
+  "version": "0.0.6",
   "main": "index.js",
   "module": "main.js",
   "license": "MIT",
