@@ -1,18 +1,18 @@
 {
-    "name": "media-url-parser",
-    "version": "0.0.5",
-    "main": "index.js",
-    "module": "main.js",
-    "license": "MIT",
-    "scripts": {
-        "start": "node index.js",
-        "test": "ava"
-    },
-    "dependencies": {
-        "esm": "^3.0.72",
-        "youtube-regex": "^1.0.5"
-    },
-    "devDependencies": {
-        "ava": "1.0.0-beta.6"
-    }
+  "name": "media-url-parser",
+  "version": "0.0.5",
+  "main": "index.js",
+  "module": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "ava"
+  },
+  "dependencies": {
+    "esm": "^3.0.72",
+    "youtube-regex": "^1.0.5"
+  },
+  "devDependencies": {
+    "ava": "1.0.0-beta.6"
+  }
 }
