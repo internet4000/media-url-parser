@@ -1,10 +1,12 @@
 # media-url-parser
 
+Install with `yarn add media-url-parser` as a [npm package](https://www.npmjs.com/package/media-url-parser).
+
 Usage:
 
 ```javascript
-const urlA = 'https://www.youtube.com/watch?v=OkR7UNnQU6c';
-const urlB = '192.168.0.1/a/longer/path/podcast.ogg';
+const urlA = 'https://www.youtube.com/watch?v=OkR7UNnQU6c'
+const urlB = '192.168.0.1/a/longer/path/podcast.ogg'
 
 const resultsA = mediaUrlParser(urlA)
 const resultsB = mediaUrlParser(urlB)
@@ -27,3 +29,19 @@ This code will output:
 }
 
 ```
+
+Supported providers are:
+
+- [youtube](https://www.youtube.com)
+- file (only remote for now, not local files)
+- [discogs](https://www.discogs.com)
+
+Possible future providers are:
+- [bandcamp](https://bandcamp.com/)
+- [musicbrainz](https://musicbrainz.org/)
+- [mixcloud](https://www.mixcloud.com/)
+- [spotify](https://www.spotify.com/)
+- [soundcloud](https://soundcloud.com/)
+- [youtube-music](https://music.youtube.com/)
+
+Suggestions and PR welcome.
