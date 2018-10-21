@@ -16,13 +16,13 @@ const fileUrlToId = (url) => {
 }
 
 const discogsUrlToId = (url) => {
-    // https://regexr.com/3i5fa
-    let discogsReleaseRegex = /([0-9]+(?:$|(?=\?)|(?=\/$)))/gm
-    let result = discogsReleaseRegex.exec(url)
-    if (!result) {
-	return undefined
-    }
-    return result[0]
+  // https://regexr.com/3i5fa
+  let discogsReleaseRegex = /([0-9]+(?:$|(?=\?)|(?=\/$)))/gm
+  let result = discogsReleaseRegex.exec(url)
+  if (!result) {
+		return undefined
+  }
+  return result[0]
 }
 
 const findId = (url, provider) => {
