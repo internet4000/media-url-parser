@@ -74,6 +74,10 @@ const mediaUrlParser = (url) => {
 	// 2. in this provider url, find a media `id`
 	let id = findId(url, provider)
 
+	if (!id) {
+		throw new Error('Could not detect id from: ' + url)
+	}
+
 	// 3. return a result object
 	return { url, provider, id }
 }
