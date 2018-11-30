@@ -40,8 +40,7 @@ const findId = (url, provider) => {
 }
 
 const findProvider = (url) => {
-	let result = new URL(url)
-	let hostId = extractHostId(result.host)
+	let hostId = extractHostId(url.host)
 
 	// from the hostId, find the provider id
 	return providersList[hostId] || 'file'
