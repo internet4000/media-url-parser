@@ -58,14 +58,10 @@ const extractHostId = (host) => {
 
 // enforces the presence of a `host` in the url
 const normalizeUrl = (url) => {
-	let result = new URL(url)
-	// case there is no `http://` in the url
-	if (!result.hostname) {
-		// default to https
-		return `https://${url}`
-	} else {
-		return url
+	if (!url.startsWith('http')) {
+		url = `https://${url}`
 	}
+	return new URL(url)
 }
 
 const mediaUrlParser = (url) => {
