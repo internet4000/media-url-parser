@@ -43,11 +43,17 @@ const findProvider = (url) => {
 	let hostId = extractHostId(url.host)
 
 	// from the hostId, find the provider id
+	// and fallback to file.
 	return providersList[hostId] || 'file'
 }
 
 const extractHostId = (host) => {
 	let els = host.split('.')
+
+	// If it's an IP address, host should be undefined.
+	if (Number(els.join(''))) {
+		return undefined
+	}
 
 	// else return the two last elements of the array,
 	// the top domain name and its extension
