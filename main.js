@@ -20,7 +20,7 @@ const discogsUrlToId = (url) => {
   let discogsReleaseRegex = /([0-9]+(?:$|(?=\?)|(?=\/$)))/gm
   let result = discogsReleaseRegex.exec(url)
   if (!result) {
-		return undefined
+		throw new Error('Could not find id from Discogs URL')
   }
   return result[0]
 }
@@ -31,10 +31,9 @@ const findId = (url, provider) => {
 		file: (url) => fileUrlToId(url),
 		discogs: (url) => discogsUrlToId(url)
   }
-
 	let extractId = methods[provider]
 	if (typeof extractId !== 'function') {
-		return undefined
+		throw new Error('Could not find provider method from: ' + extractId)
 	} else {
 		return extractId(url)
 	}
