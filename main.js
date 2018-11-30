@@ -20,7 +20,7 @@ const discogsUrlToId = (url) => {
   let discogsReleaseRegex = /([0-9]+(?:$|(?=\?)|(?=\/$)))/gm
   let result = discogsReleaseRegex.exec(url)
   if (!result) {
-		return undefined
+		throw new Error('Could not find id from Discogs URL')
   }
   return result[0]
 }
@@ -31,46 +31,43 @@ const findId = (url, provider) => {
 		file: (url) => fileUrlToId(url),
 		discogs: (url) => discogsUrlToId(url)
   }
-
 	let extractId = methods[provider]
 	if (typeof extractId !== 'function') {
-		return undefined
+		throw new Error('Could not find provider method from: ' + extractId)
 	} else {
 		return extractId(url)
 	}
 }
 
 const findProvider = (url) => {
-	let result = new URL(url)
-	let hostId = extractHostId(result.host)
+	let hostId = extractHostId(url.host)
 
 	// from the hostId, find the provider id
+	// and fallback to file.
 	return providersList[hostId] || 'file'
 }
 
 const extractHostId = (host) => {
 	let els = host.split('.')
-	// is host an ip, aka just numbers
+
+	// If it's an IP address, host should be undefined.
 	if (Number(els.join(''))) {
 		return undefined
 	}
+
 	// else return the two last elements of the array,
 	// the top domain name and its extension
 	return els
-		.slice(els.length -2, els.length)
+		.slice(els.length - 2, els.length)
 		.join('.')
 }
 
 // enforces the presence of a `host` in the url
 const normalizeUrl = (url) => {
-	let result = new URL(url)
-	// case there is no `http://` in the url
-	if (!result.hostname) {
-		// default to https
-		return `https://${url}`
-	} else {
-		return url
+	if (!url.startsWith('http')) {
+		url = `https://${url}`
 	}
+	return new URL(url)
 }
 
 const mediaUrlParser = (url) => {
@@ -82,6 +79,10 @@ const mediaUrlParser = (url) => {
 
 	// 2. in this provider url, find a media `id`
 	let id = findId(url, provider)
+
+	if (!id) {
+		throw new Error('Could not detect id from: ' + url)
+	}
 
 	// 3. return a result object
 	return { url, provider, id }
