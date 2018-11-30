@@ -48,14 +48,11 @@ const findProvider = (url) => {
 
 const extractHostId = (host) => {
 	let els = host.split('.')
-	// is host an ip, aka just numbers
-	if (Number(els.join(''))) {
-		return undefined
-	}
+
 	// else return the two last elements of the array,
 	// the top domain name and its extension
 	return els
-		.slice(els.length -2, els.length)
+		.slice(els.length - 2, els.length)
 		.join('.')
 }
 
