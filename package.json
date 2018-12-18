@@ -4,6 +4,7 @@
   "main": "index.js",
   "module": "main.js",
   "license": "MIT",
+  "repository": "https://github.com/internet4000/media-url-parser",
   "scripts": {
     "start": "node index.js",
     "test": "ava"
