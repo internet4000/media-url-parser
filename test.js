@@ -15,6 +15,14 @@ test('Youtube URL correctly parse the provider', t => {
 	})
 })
 
+test('object returned includes a normalized url property', t => {
+	youtubeDict.forEach(item => {
+		let r = mediaUrlParser(item[0])
+		t.truthy(typeof r.url, 'string')
+		t.is(r.url.includes(item[0]), true)
+	})
+})
+
 test('File URL correctly parse the provider', async t => {
 	t.plan(fileDict.length)
 
