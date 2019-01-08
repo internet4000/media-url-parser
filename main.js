@@ -40,7 +40,7 @@ const findId = (url, provider) => {
 }
 
 const findProvider = (url) => {
-	let hostId = extractHostId(url.host)
+	let hostId = extractHostId(new URL(url).host)
 
 	// from the hostId, find the provider id
 	// and fallback to file.
@@ -67,12 +67,12 @@ const normalizeUrl = (url) => {
 	if (!url.startsWith('http')) {
 		url = `https://${url}`
 	}
-	return new URL(url)
+	return url
 }
 
-const mediaUrlParser = (url) => {
+const mediaUrlParser = (inputUrl) => {
 	// 0. normalize url, so it can be parsed homogenously
-	url = normalizeUrl(url)
+	const url = normalizeUrl(inputUrl)
 
 	// 1. detect which provider's url it is
 	let provider = findProvider(url)
