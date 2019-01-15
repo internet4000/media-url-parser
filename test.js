@@ -1,12 +1,18 @@
 import test from 'ava'
 import {mediaUrlParser} from './index.js'
-import {youtubeDict, fileDict, discogsDict} from './tests/provider-dictionaries'
+import {youtubeDict, fileDict, discogsDict, bandcampDict} from './tests/provider-dictionaries'
 
 /*
   Providers, check if they are correctly discovered in a url
 */
 
-test('Youtube URL correctly parse the provider', t => {
+test('It throws when it cannot detect a provider', t => {
+	const error = t.throws(() => {
+		mediaUrlParser('notanurl')
+	})
+})
+
+test('Youtube URL correctly parses the provider', t => {
 	t.plan(youtubeDict.length)
 
 	youtubeDict.forEach(item => {
@@ -15,7 +21,7 @@ test('Youtube URL correctly parse the provider', t => {
 	})
 })
 
-test('object returned includes a normalized url property', t => {
+test('Object returned includes a normalized url property', t => {
 	youtubeDict.forEach(item => {
 		let r = mediaUrlParser(item[0])
 		t.truthy(typeof r.url, 'string')
@@ -23,7 +29,7 @@ test('object returned includes a normalized url property', t => {
 	})
 })
 
-test('File URL correctly parse the provider', async t => {
+test('File URL correctly parses the provider', async t => {
 	t.plan(fileDict.length)
 
 	fileDict.forEach(item => {
@@ -32,7 +38,7 @@ test('File URL correctly parse the provider', async t => {
 	})
 })
 
-test('Discogs URL correctly parse the provider', async t => {
+test('Discogs URL correctly parses the provider', async t => {
 	t.plan(discogsDict.length)
 
 	discogsDict.forEach(item => {
@@ -41,11 +47,20 @@ test('Discogs URL correctly parse the provider', async t => {
 	})
 })
 
+test('Bandcamp URL correctly parses the provider', async t => {
+	t.plan(bandcampDict.length)
+
+	bandcampDict.forEach(item => {
+		let r = mediaUrlParser(item[0])
+		t.is(r.provider, 'bandcamp')
+	})
+})
+
 /*
   ID, check if the if is found in a url of a specific provider
 */
 
-test('Youtube URL correctly parse the id correctly', t => {
+test('Youtube URL correctly parses the id', t => {
 	t.plan(youtubeDict.length)
 
 	youtubeDict.forEach(item => {
@@ -54,7 +69,7 @@ test('Youtube URL correctly parse the id correctly', t => {
 	})
 })
 
-test('File URL correctly parse the id correctly', t => {
+test('File URL correctly parses the id', t => {
 	t.plan(fileDict.length)
 
 	fileDict.forEach(item => {
@@ -63,17 +78,33 @@ test('File URL correctly parse the id correctly', t => {
 	})
 })
 
-test('It throws when it cant detect a provider', t => {
-	const error = t.throws(() => {
-		mediaUrlParser('notanurl')
-	})
-})
-
-test('Discogs URL correctly parse the id correctly', t => {
+test('Discogs URL correctly parses the id', t => {
 	t.plan(discogsDict.length)
 
 	discogsDict.forEach(item => {
 		let r = mediaUrlParser(item[0])
 		t.is(r.id, item[1])
+	})
+})
+
+test('Bandcamp URL correctly parses the id ', t => {
+	t.plan(bandcampDict.length)
+
+	bandcampDict.forEach(item => {
+		let r = mediaUrlParser(item[0])
+		t.is(r.id, item[1])
+	})
+})
+
+/*
+  Type, check if the type is found in a url of a specific provider
+*/
+
+test('Bandcamp URL correctly parses the media type', async t => {
+	t.plan(bandcampDict.length)
+
+	bandcampDict.forEach(item => {
+		let r = mediaUrlParser(item[0])
+		t.is(r.type, item[2])
 	})
 })

@@ -1,7 +1,8 @@
 const providersList =  {
 	'youtube.com': 'youtube',
 	'youtu.be': 'youtube',
-	'discogs.com': 'discogs'
+	'discogs.com': 'discogs',
+	'bandcamp.com': 'bandcamp'
 }
 
 
