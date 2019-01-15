@@ -110,3 +110,16 @@ exports.discogsDict = [
 		'7983975'
 	]
 ]
+
+exports.bandcampDict = [
+	[
+		'https://iliantape.bandcamp.com/album/it039-andrea-forse',
+		'it039-andrea-forse',
+		'album'
+	],
+	[
+		'https://iliantape.bandcamp.com/track/future-atmo',
+		'future-atmo',
+		'track'
+	]
+]

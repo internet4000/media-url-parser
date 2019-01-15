@@ -1,41 +1,77 @@
 import youtubeRegex from 'youtube-regex'
 import providersList from './src/providers'
 
-const youtubeUrlToId = (url) => {
+/*
+	Media provider URL parsers
+*/
+
+const parseFileUrl = (url) => {
+	let result = new URL(url)
+	let s = result.pathname.split('/')
+	let id = s[s.length - 1]
+	return {
+		id,
+		type: 'audio'
+	}
+}
+
+const parseYoutubeUrl = (url) => {
 	const results = youtubeRegex().exec(url)
 	if (!results) {
 		return false
 	}
-	return results[1]
+	const id = results[1];
+	return {
+		id,
+		type: 'video'
+	}
 }
 
-const fileUrlToId = (url) => {
-	let result = new URL(url)
-	let s = result.pathname.split('/')
-	return s[s.length - 1]
-}
-
-const discogsUrlToId = (url) => {
+const parseDiscogsUrl = (url) => {
   // https://regexr.com/3i5fa
   let discogsReleaseRegex = /([0-9]+(?:$|(?=\?)|(?=\/$)))/gm
   let result = discogsReleaseRegex.exec(url)
   if (!result) {
 		throw new Error('Could not find id from Discogs URL')
   }
-  return result[0]
+  return {
+		id: result[0],
+		type: 'release'
+	}
 }
 
-const findId = (url, provider) => {
-  let methods = {
-		youtube: (url) => youtubeUrlToId(url),
-		file: (url) => fileUrlToId(url),
-		discogs: (url) => discogsUrlToId(url)
+const parseBandcampUrl = (url) => {
+	// https://regexr.com/46f84
+	let bandcampRegex = /(album|track)(?:\/)([^\/\s\?]+)/gm
+  let result = bandcampRegex.exec(url)
+  if (!result) {
+		throw new Error('Could not find informations from Bandcamp URL')
   }
-	let extractId = methods[provider]
-	if (typeof extractId !== 'function') {
-		throw new Error('Could not find provider method from: ' + extractId)
-	} else {
-		return extractId(url)
+  return {
+		type: result[1],
+		id: result[2]
+	}
+}
+
+const parseUrl = (url) => {
+	let provider = findProvider(url)
+  let methods = {
+		youtube: (url) => parseYoutubeUrl(url),
+		file: (url) => parseFileUrl(url),
+		discogs: (url) => parseDiscogsUrl(url),
+		bandcamp: (url) => parseBandcampUrl(url)
+  }
+	let providerUrlParser = methods[provider]
+
+	if (typeof providerUrlParser !== 'function') {
+		throw new Error(`Could not find a url parser for the provider: ${provider}, with url: ${url}`)
+	}
+
+	const {id, type} = providerUrlParser(url)
+	return {
+		id,
+		type,
+		provider
 	}
 }
 
@@ -74,18 +110,15 @@ const mediaUrlParser = (inputUrl) => {
 	// 0. normalize url, so it can be parsed homogenously
 	const url = normalizeUrl(inputUrl)
 
-	// 1. detect which provider's url it is
-	let provider = findProvider(url)
-
-	// 2. in this provider url, find a media `id`
-	let id = findId(url, provider)
+	// Parse the media provider url, to find: provider id, media id, media type
+	let {provider, id, type} = parseUrl(url)
 
 	if (!id) {
 		throw new Error('Could not detect id from: ' + url)
 	}
 
-	// 3. return a result object
-	return { url, provider, id }
+	// 4. return a result object
+	return { url, provider, id, type }
 }
 
 export {
