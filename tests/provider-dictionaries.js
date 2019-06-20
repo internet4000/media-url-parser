@@ -110,3 +110,26 @@ exports.discogsDict = [
 		'7983975'
 	]
 ]
+
+exports.vimeoDict = [
+	[
+		'https://vimeo.com/36579366',
+		'36579366'
+	],
+	[
+		'http://player.vimeo.com/video/25451551',
+		'25451551'
+	],
+	[
+		'http://player.vimeo.com/video/25451551',
+		'25451551'
+	],
+	[
+		'https://vimeo.com/342770360#comment_17535401',
+		'342770360'
+	],
+	[
+		'https://vimeo.com/342770360?test="22"#comment_17535401',
+		'342770360'
+	]
+]
