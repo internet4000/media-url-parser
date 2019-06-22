@@ -69,6 +69,8 @@ const extractHostId = (host) => {
 
 // enforces the presence of a `host` in the url
 const normalizeUrl = (url) => {
+	// triiim it one last time
+	url = url.trim()
 	if (!url.startsWith('http')) {
 		url = `https://${url}`
 	}
