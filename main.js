@@ -28,13 +28,24 @@ const vimeoUrlToId = (url) => {
 	// cool it works without the need of a custom parser!
   return fileUrlToId(url)
 }
+const soundcloudUrlToId = (url) => {
+	const getId = (url) => {
+		let result = new URL(url)
+		// remove first slash
+		let s = result.pathname.slice(1)
+		return s
+	}
+	const id = getId(url)
+	return id
+}
 
 const findId = (url, provider) => {
   let methods = {
 		youtube: (url) => youtubeUrlToId(url),
 		file: (url) => fileUrlToId(url),
 		discogs: (url) => discogsUrlToId(url),
-		vimeo: (url) => vimeoUrlToId(url)
+		vimeo: (url) => vimeoUrlToId(url),
+		soundcloud: (url) => soundcloudUrlToId(url)
   }
 	let extractId = methods[provider]
 	if (typeof extractId !== 'function') {

@@ -133,3 +133,21 @@ exports.vimeoDict = [
 		'342770360'
 	]
 ]
+
+exports.soundcloudDict = [
+	[
+		'https://soundcloud.com/lyl_radio/sets/lyl-ra-at-dizonord',
+		'lyl_radio/sets/lyl-ra-at-dizonord',
+		'sets'
+	],
+	[
+		'https://soundcloud.com/lyl_radio/lyl-ra-at-dizonord-170519-w-dizonord-djs?in=lyl_radio/sets/lyl-ra-at-dizonord',
+		'lyl_radio/lyl-ra-at-dizonord-170519-w-dizonord-djs',
+		'track'
+	],
+	[
+		'https://soundcloud.com/lyl_radio/sur-ecoute-250419-w-pam-belec-danse-toujours-sainte-rita',
+		'lyl_radio/sur-ecoute-250419-w-pam-belec-danse-toujours-sainte-rita',
+		'track'
+	]
+]
