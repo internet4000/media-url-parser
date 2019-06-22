@@ -24,12 +24,17 @@ const discogsUrlToId = (url) => {
   }
   return result[0]
 }
+const vimeoUrlToId = (url) => {
+	// cool it works without the need of a custom parser!
+  return fileUrlToId(url)
+}
 
 const findId = (url, provider) => {
   let methods = {
 		youtube: (url) => youtubeUrlToId(url),
 		file: (url) => fileUrlToId(url),
-		discogs: (url) => discogsUrlToId(url)
+		discogs: (url) => discogsUrlToId(url),
+		vimeo: (url) => vimeoUrlToId(url)
   }
 	let extractId = methods[provider]
 	if (typeof extractId !== 'function') {
@@ -77,6 +82,9 @@ const mediaUrlParser = (inputUrl) => {
 	// 1. detect which provider's url it is
 	let provider = findProvider(url)
 
+	if (!provider) {
+		throw new Error('Could not detect a known provider: ' + url)
+	}
 	// 2. in this provider url, find a media `id`
 	let id = findId(url, provider)
 
