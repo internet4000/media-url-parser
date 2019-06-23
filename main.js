@@ -56,8 +56,13 @@ const findId = (url, provider) => {
 }
 
 const findProvider = (url) => {
-	let hostId = extractHostId(new URL(url).host)
-
+	let hostId;
+	try {
+		hostId = extractHostId(new URL(url).host)
+	} catch(error) {
+		console.error('Cannot find provider from url', url, error)
+	}
+	if(!hostId) return null
 	// from the hostId, find the provider id
 	// and fallback to file.
 	return providersList[hostId] || 'file'
