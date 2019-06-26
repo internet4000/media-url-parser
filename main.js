@@ -40,19 +40,24 @@ const soundcloudUrlToId = (url) => {
 }
 
 const findId = (url, provider) => {
-  let methods = {
+	if(!provider) return null
+
+	let methods = {
 		youtube: (url) => youtubeUrlToId(url),
 		file: (url) => fileUrlToId(url),
 		discogs: (url) => discogsUrlToId(url),
 		vimeo: (url) => vimeoUrlToId(url),
 		soundcloud: (url) => soundcloudUrlToId(url)
   }
-	let extractId = methods[provider]
-	if (typeof extractId !== 'function') {
-		throw new Error('Could not find provider method from: ' + extractId)
-	} else {
-		return extractId(url)
-	}
+
+	let extractMethod = methods[provider]
+	if (typeof extractMethod !== 'function') return null
+
+	let extractedId = extractMethod(url)
+
+	if (!extractedId) return null
+
+	return extractedId
 }
 
 const findProvider = (url) => {
@@ -62,10 +67,15 @@ const findProvider = (url) => {
 	} catch(error) {
 		console.error('Cannot find provider from url', url, error)
 	}
-	if(!hostId) return null
+
 	// from the hostId, find the provider id
 	// and fallback to file.
-	return providersList[hostId] || 'file'
+	const hostExsists = providersList[hostId]
+	if (hostExsists) {
+		return providersList[hostId]
+	} else {
+		return 'file'
+	}
 }
 
 const extractHostId = (host) => {
@@ -73,7 +83,7 @@ const extractHostId = (host) => {
 
 	// If it's an IP address, host should be undefined.
 	if (Number(els.join(''))) {
-		return undefined
+		return null
 	}
 
 	// else return the two last elements of the array,
@@ -96,18 +106,19 @@ const normalizeUrl = (url) => {
 const mediaUrlParser = (inputUrl) => {
 	// 0. normalize url, so it can be parsed homogenously
 	const url = normalizeUrl(inputUrl)
+	let id;
 
 	// 1. detect which provider's url it is
 	let provider = findProvider(url)
 
 	if (!provider) {
-		throw new Error('Could not detect a known provider: ' + url)
-	}
-	// 2. in this provider url, find a media `id`
-	let id = findId(url, provider)
-
-	if (!id) {
-		throw new Error('Could not detect id from: ' + url)
+		console.info('Could not detect a known provider: %s', url)
+	} else {
+		// 2. in this provider url, find a media `id`
+		id = findId(url, provider)
+		if (!id) {
+			console.info('Could not detect id from: %s', url)
+		}
 	}
 
 	// 3. return a result object

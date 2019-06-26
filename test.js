@@ -10,14 +10,14 @@ import {
 
 function testUrl(t, item, provider) {
 	let r = mediaUrlParser(item[0])
-	t.is(r.id, item[1])
 	t.is(r.provider, provider)
+	t.is(r.id, item[1])
 }
 
-test('It throws when it cant detect a provider', t => {
-	t.throws(() => {
-		testUrl(t, 'not-an-url', 'not a provider')
-	})
+test('It does not throw when it cant detect a provider', t => {
+	let r = mediaUrlParser('not-an-url')
+	t.is(r.provider, 'file')
+	t.is(r.id, null)
 })
 
 test('object returned includes a normalized url property', t => {
