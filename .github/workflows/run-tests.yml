@@ -1,0 +1,9 @@
+# Run the tests!
+name: Run tests
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+      - run: npm run test

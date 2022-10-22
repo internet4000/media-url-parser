@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+	<title>media-url-parser</title>
+	<meta name="description" content="media-url-parser">
+	<style>
+		/* https: //css-tricks.com/box-sizing/#aa-universal-box-sizing-with-inheritance */
+
+		html {
+			box-sizing: border-box;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
+
+		:root {
+			font-size: 2rem;
+		}
+
+		media-url-parser {
+			display: flex;
+			flex-direction: column;
+		}
+
+		media-url-parser,
+		media-url-parser input,
+		media-url-parser output {
+			width: 100%;
+			padding: 1rem;
+			font-size: inherit;
+		}
+
+		media-url-parser output {
+			margin-top: 1rem;
+			word-break: break-word;
+			display: block;
+		}
+	</style>
+
+	<script type="module">
+		import MediaUrlParser from './src/web-component.js'
+		customElements.define('media-url-parser', MediaUrlParser)
+	</script>
+</head>
+
+<body>
+	<h1>
+		media-url-parser
+	</h1>
+	<p>Paste in a URL to a media (youtube, soundcloud etc.); see the
+		<a href="https://github.com/internet4000/media-url-parser">docs</a></p>
+	<media-url-parser url="https://www.youtube.com/watch?v=f7xB2fFk1tQ"></media-url-parser>
+</body>
+
+</html>

@@ -1,7 +1,10 @@
+import test from 'ava'
+
+/* tests at the bottm */
+
 // a dictionary here is an array of arrays
 // const dictionnary = [ ['providerUrl', 'providerId']]
-
-exports.youtubeDict = [
+export const youtubeDict = [
 	[
 		'youtu.be/yhRdMTQWhOc',
 		'yhRdMTQWhOc'
@@ -40,7 +43,7 @@ exports.youtubeDict = [
 	]
 ]
 
-exports.fileDict = [
+export const fileDict = [
 	[
 		'http://192.168.0.1/a/longer/path/podcast.ogg',
 		'podcast.ogg'
@@ -60,7 +63,7 @@ exports.fileDict = [
 ]
 
 
-exports.discogsDict = [
+export const discogsDict = [
 	[
 		'https://7778787987987.discogs.com/1123123/release/082112312312331',
 		'082112312312331'
@@ -111,7 +114,7 @@ exports.discogsDict = [
 	]
 ]
 
-exports.vimeoDict = [
+export const vimeoDict = [
 	[
 		'https://vimeo.com/36579366',
 		'36579366'
@@ -134,7 +137,7 @@ exports.vimeoDict = [
 	]
 ]
 
-exports.soundcloudDict = [
+export const soundcloudDict = [
 	[
 		'https://soundcloud.com/lyl_radio/sets/lyl-ra-at-dizonord',
 		'lyl_radio/sets/lyl-ra-at-dizonord',
@@ -151,3 +154,12 @@ exports.soundcloudDict = [
 		'track'
 	]
 ]
+
+
+/*
+	 tests
+ */
+
+test('There are available media dictionnaries', t => {
+	t.is(youtubeDict.length, 9)
+})

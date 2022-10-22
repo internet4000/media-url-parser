@@ -1,19 +1,13 @@
 {
   "name": "media-url-parser",
   "version": "0.1.3",
-  "main": "index.js",
-  "module": "main.js",
+  "main": "src/media-url-parser.js",
+  "module": "src/media-url-parser.js",
+  "type": "module",
   "license": "MIT",
   "repository": "https://github.com/internet4000/media-url-parser",
   "scripts": {
-    "start": "node index.js",
-    "test": "ava"
-  },
-  "dependencies": {
-    "esm": "^3.0.72",
-    "youtube-regex": "^1.0.5"
-  },
-  "devDependencies": {
-    "ava": "1.0.0-beta.6"
+    "dev": "npx serve .",
+    "test": "npx ava"
   }
 }

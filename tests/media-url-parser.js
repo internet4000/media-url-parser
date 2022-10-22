@@ -1,12 +1,12 @@
 import test from 'ava'
-import {mediaUrlParser} from './index.js'
+import {mediaUrlParser} from '../src/media-url-parser.js'
 import {
 	youtubeDict,
 	fileDict,
 	discogsDict,
 	vimeoDict,
 	soundcloudDict
-} from './tests/provider-dictionaries'
+} from './provider-dictionaries.js'
 
 function testUrl(t, item, provider) {
 	let r = mediaUrlParser(item[0])
