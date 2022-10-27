@@ -2,6 +2,16 @@
 
 Install with `yarn add media-url-parser` as a [npm package](https://www.npmjs.com/package/media-url-parser).
 
+Or load from a CDN
+
+```html
+<script type="module">
+  import mediaUrlParser from 'https://unpkg.com/media-url-parser'
+  const x = mediaUrlParser('https://www.youtube.com/watch?v=EFh-vtZHjOQ')
+  console.log(x) // {url: "https://www.youtube.com/watch?v=EFh-vtZHjOQ", provider: "youtube", id: "EFh-vtZHjOQ"}
+</script>
+```
+
 Usage:
 
 ```javascript
