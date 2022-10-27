@@ -1,5 +1,5 @@
 import test from 'ava'
-import {mediaUrlParser} from '../src/media-url-parser.js'
+import mediaUrlParser from '../src/media-url-parser.js'
 import {
 	youtubeDict,
 	fileDict,
