@@ -24,4 +24,4 @@ export type MediaUrlParserReturn = {
  * @param {string} inputUrl
  * @returns {MediaUrlParserReturn}
  */
-declare function mediaUrlParser(inputUrl: string): MediaUrlParserReturn;
+export function mediaUrlParser(inputUrl: string): MediaUrlParserReturn;

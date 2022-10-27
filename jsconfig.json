@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"checkJs": true,
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "NodeNext"
+	},
+	"include": [
+		"src/**/*",
+		"tests/**/*"
+	]
+}

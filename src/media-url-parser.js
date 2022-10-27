@@ -49,7 +49,12 @@ const soundcloudUrlToId = (url) => {
 	const id = getId(url)
 	return id
 }
-
+/**
+ * Returns the external id from a URL
+ * @param {string} url - URL to the media
+ * @param {string} provider - name of the provider
+ * @returns {string}
+ */
 const findId = (url, provider) => {
 	if (!provider) return null
 
@@ -71,6 +76,11 @@ const findId = (url, provider) => {
 	return extractedId
 }
 
+/**
+ * Detects and returns a provider name from a URL string
+ * @param {string} url
+ * @returns {string} provider name e.g. "youtube", "file" etc.
+ */
 const findProvider = (url) => {
 	let hostId;
 	try {
@@ -149,3 +159,4 @@ const mediaUrlParser = (inputUrl) => {
 }
 
 export default mediaUrlParser
+export {mediaUrlParser}
