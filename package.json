@@ -9,5 +9,8 @@
   "scripts": {
     "dev": "npx serve .",
     "test": "npx ava"
+  },
+  "devDependencies": {
+    "ava": "^5.0.1"
   }
 }
