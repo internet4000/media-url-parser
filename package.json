@@ -8,7 +8,7 @@
   "repository": "https://github.com/internet4000/media-url-parser",
   "scripts": {
     "dev": "npx serve .",
-    "test": "npx ava",
+    "test": "ava",
     "types": "tsc src/media-url-parser.js --allowJs --declaration --emitDeclarationOnly"
   },
   "devDependencies": {
