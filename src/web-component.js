@@ -1,4 +1,4 @@
-import mediaUrlParser from './providers.js'
+import mediaUrlParser from './media-url-parser.js'
 
 export default class MediaUrlParser extends HTMLElement {
 	static get observedAttributes() {
