@@ -1,6 +1,6 @@
 {
   "name": "media-url-parser",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "src/media-url-parser.js",
   "module": "src/media-url-parser.js",
   "type": "module",
